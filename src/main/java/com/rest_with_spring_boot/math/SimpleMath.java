@@ -1,4 +1,4 @@
-package com.rest_with_spring_boot;
+package com.rest_with_spring_boot.math;
 
 import com.rest_with_spring_boot.converters.NumberConverter;
 
