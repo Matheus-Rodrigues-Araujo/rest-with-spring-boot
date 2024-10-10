@@ -1,5 +1,6 @@
-package com.rest_with_spring_boot;
+package com.rest_with_spring_boot.controllers;
 
+import com.rest_with_spring_boot.SimpleMath;
 import com.rest_with_spring_boot.converters.NumberConverter;
 import com.rest_with_spring_boot.exceptions.UnsupportedMathOperationException;
 import org.springframework.web.bind.annotation.*;
