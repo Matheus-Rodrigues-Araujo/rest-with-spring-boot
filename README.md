@@ -1,48 +1,64 @@
-# CALCULATOR API
+# REST API WITH JAVA/SPRING BOOT
 
-Calculator API is a RESTful application built with **Java** and **Spring Boot**
-that performs mathematical operations such as square root, addition, multiplication,
-and many others. The operations are executed when values are passed as parameters in the URL, and the API returns the result of the desired operation.
+This API allows the creation, updating, retrieval, and deletion of person records using Java and Spring Boot.
 
-## Features
+## Technologies Used
 
-Available operations:
-* **SUM** (sum/{n1}/{n2}): Returns the sum of two numbers.
-* **SUBTRACTION** (subtract/{n1}/{n2}): Returns the difference between two numbers.
-* **MULTIPLICATION** (multiply/{n1}/{n2}): Returns the product of two numbers.
-* **DIVISION** (divide/{n1}/{n2}): Returns the quotient of two numbers.
-* **SQUARE ROOT** (sqrt/{n1}): Returns the square root of a number.
+- **Java 17**
+- **Spring Boot 3.3.4**
+- **JPA/Hibernate**
+- **MySQL**
+- **Maven**
 
-## Validations
+## Endpoints
 
-* All parameters are validated to ensure that the values are numeric. Otherwise, a custom exception called `UnsupportedMathOperationException` is thrown with the message, "Please provide a numeric value."
+### List all people
 
-* The API uses the `NumberConverter` method to verify and convert all string parameters to double before processing the operations.
+**GET** `/person`
 
-## Exceptions
+- **Response**: Returns a list of all person records.
+- **Status**: `200 OK`
 
-If an operation receives an invalid parameter (non-numeric), the API will throw an exception of type `UnsupportedMathOperationException`, returning an appropriate error message.
+### Get person by ID
 
-## Examples
+**GET** `/person/{id}`
 
-### SUM
-**Request**
-``GET /sum/10/5``
+- **Parameter**: `id` (Long) - The ID of the person.
+- **Response**: Returns the person data for the given ID.
+- **Status**: `200 OK`
+- **Error**: `404 Not Found` - If the ID is not found.
 
-**Response**
-``
-{ 
-    "result"": 15.0
-}
-``
+### Create a new person
 
-### Division
-**Request**
-``GET /div/10/2``
+**POST** `/person`
 
-**Response**
-``
-{
-"result"": 5.0
-}
-``
+- **Request Body**:
+  ```json
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "address": "123 Street",
+    "gender": "Male"
+  }
+
+### Update a person's data
+
+**PUT** `/person`
+
+- **Request Body**:
+  ```json
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "address": "123 Updated Street",
+    "gender": "Male"
+  }
+
+### Delete a Person
+
+**DELETE** `/person/{id}`
+
+- **Parameter**: `id` (Long) - The ID of the person.
+- **Response**: `204 No Content` (No body in the response).
+- **Error**: `404 Not Found` - If the ID is not found.
